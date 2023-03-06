@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.ydf.user.mapper.CreateMapper">
+
+    <insert id="createSysUser" parameterType="java.util.LinkedList" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+            sys_user ( account , password )
+        VALUE
+        <foreach collection="list" item="item" index="index" separator=",">
+            ( #{item.account} , #{item.password} )
+        </foreach>
+    </insert>
+
+    <insert id="insertDoctor" parameterType="java.util.LinkedList">
+        INSERT INTO
+            user_role ( user_id , role_id )
+        VALUE
+        <foreach collection="list" item="item" index="index" separator=",">
+            ( #{item} , 1 )
+        </foreach>
+    </insert>
+
+    <insert id="insertVolunteer" parameterType="java.util.LinkedList">
+        INSERT INTO
+        user_role ( user_id , role_id )
+        VALUE
+        <foreach collection="list" item="item" index="index" separator=",">
+            ( #{item} , 2 )
+        </foreach>
+    </insert>
+
+</mapper>

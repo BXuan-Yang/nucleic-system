@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.ydf.user.mapper.TaskMapper">
+
+    <update id="deleteVolunteer">
+        UPDATE
+            sys_user su
+        INNER JOIN ( SELECT user_id,role_id FROM user_role) c ON su.id = c.user_id AND c.role_id = 2
+        SET
+            is_deleted = 1
+        WHERE
+            CURRENT_TIMESTAMP > DATE_ADD(su.create_time, INTERVAL 18 HOUR)
+    </update>
+
+</mapper>

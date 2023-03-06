@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ydf.point.mapper.PointMapper">
+    <select id="findByName" parameterType="java.util.List" resultType="com.ydf.common.domain.CheckPoint">
+        SELECT * FROM check_point
+        <where>
+            <if test="nameList != null and nameList.size()>0">
+                <foreach collection="nameList" open="and name in (" close=")" item="name" separator=",">
+                    #{name}
+                </foreach>
+            </if>
+        </where>
+    </select>
+</mapper>
